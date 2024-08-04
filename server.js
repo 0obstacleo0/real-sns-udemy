@@ -15,8 +15,13 @@ mongoose.connect(process.env.MONGODB_CONN_STR)
         console.log(err);
     })
 
+app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+
+app.get("/", (req, res) => {
+    res.send("hello");
+})
 
 app.listen(PORT, console.log("server is running"));
