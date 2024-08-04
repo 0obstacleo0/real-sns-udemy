@@ -9,6 +9,11 @@ const PORT = 3000;
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGODB_CONN_STR)
+    .then(() => {
+        console.log("DB接続中");
+    }).catch((err) => {
+        console.log(err);
+    })
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
